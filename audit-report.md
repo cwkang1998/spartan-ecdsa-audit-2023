@@ -6,7 +6,8 @@
 
 **Auditors:**
 
- - Chen Wen Kang
+- Chen Wen Kang
+- Vincent Owen T
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -24,8 +25,7 @@ The contracts of the TODO_protocol_name [Repo](TODO_github_URL) were reviewed ov
 
 The scope of the review consisted of the following contracts at the specific commit:
 
-- TODO1.sol
-- TODO2.sol
+- eff_ecdsa.circom
 
 After the findings were presented to the TODO_protocol_name team, fixes were made and included in several PRs.
 
@@ -33,31 +33,30 @@ This review is a code review to identify potential vulnerabilities in the code. 
 
 yAcademy and the auditors make no warranties regarding the security of the code and do not warrant that the code is free from defects. yAcademy and the auditors do not represent nor imply to third parties that the code has been audited nor that the code is free from defects. By deploying or using the code, TODO_protocol_name and users of the contracts agree to use the code at their own risk.
 
-
-Code Evaluation Matrix
----
+## Code Evaluation Matrix
 
 | Category                 | Mark    | Description |
 | ------------------------ | ------- | ----------- |
-| Access Control           | Good | TODO |
-| Mathematics              | Good | TODO |
-| Complexity               | Good | TODO |
-| Libraries                | Average | TODO |
-| Decentralization         | Good | TODO |
-| Code stability           | Good    | TODO |
-| Documentation            | Low | TODO |
-| Monitoring               | Average | TODO |
-| Testing and verification | Average | TODO  |
+| Access Control           | Good    | TODO        |
+| Mathematics              | Good    | TODO        |
+| Complexity               | Good    | TODO        |
+| Libraries                | Average | TODO        |
+| Decentralization         | Good    | TODO        |
+| Code stability           | Good    | TODO        |
+| Documentation            | Low     | TODO        |
+| Monitoring               | Average | TODO        |
+| Testing and verification | Average | TODO        |
 
 ## Findings Explanation
 
 Findings are broken down into sections by their respective impact:
- - Critical, High, Medium, Low impact
-     - These are findings that range from attacks that may cause loss of funds, impact control/ownership of the contracts, or cause any unintended consequences/actions that are outside the scope of the requirements
- - Gas savings
-     - Findings that can improve the gas efficiency of the contracts
- - Informational
-     - Findings including recommendations and best practices
+
+- Critical, High, Medium, Low impact
+  - These are findings that range from attacks that may cause loss of funds, impact control/ownership of the contracts, or cause any unintended consequences/actions that are outside the scope of the requirements
+- Gas savings
+  - Findings that can improve the gas efficiency of the contracts
+- Informational
+  - Findings including recommendations and best practices
 
 ---
 
@@ -93,8 +92,6 @@ TODO
 
 #### Developer Response
 
-
-
 ### 2. Low - TODO_Title
 
 TODO
@@ -112,8 +109,6 @@ Low. TODO_reasoning.
 TODO
 
 #### Developer Response
-
-
 
 ## Gas Savings Findings
 
@@ -135,13 +130,20 @@ TODO
 
 ## Informational Findings
 
-### 1. Informational - TODO_Title
+### 1. Informational - Remove Uneeded Variable "Bits"
 
-TODO
+Found an uneeded variable in the EfficientECDSA circuit. The bits variable is not needed in this circuit because the variable is not being used anywhere in the circuit.
 
 #### Technical Details
 
-TODO
+```jsx
+template EfficientECDSA() {
+    var bits = 256;
+    signal input s;
+    signal input Tx; // T = r^-1 * R
+    signal input Ty;
+
+```
 
 #### Impact
 
@@ -149,7 +151,12 @@ Informational.
 
 #### Recommendation
 
-TODO
+```jsx
+template EfficientECDSA() {
+    signal input s;
+    signal input Tx; // T = r^-1 * R
+    signal input Ty;
+```
 
 ## Final remarks
 
