@@ -23,10 +23,14 @@ None beyond the code repositories.
     - [Technical Details](#technical-details)
     - [Impact](#impact)
     - [Recommendation](#recommendation)
-  - [2. Informational - More tests for the circuits](#2-informational---more-tests-for-the-circuits)
+  - [2. Informational - Constraints for `add.cicom` for values to be non-zero](#2-informational---constraints-for-addcicom-for-values-to-be-non-zero)
     - [Technical Details](#technical-details-1)
     - [Impact](#impact-1)
     - [Recommendation](#recommendation-1)
+  - [3. Informational - More tests for the circuits](#3-informational---more-tests-for-the-circuits)
+    - [Technical Details](#technical-details-2)
+    - [Impact](#impact-2)
+    - [Recommendation](#recommendation-2)
 - [Final remarks](#final-remarks)
 
 ## Review Summary
@@ -104,8 +108,28 @@ template EfficientECDSA() {
     signal input Ty;
 ```
 
+### 2. Informational - Constraints for `add.cicom` for values to be non-zero
 
-### 2. Informational - More tests for the circuits
+In signal assignments containing division, the divisor needs to be constrained to be non-zero. (circomspect)
+
+#### Technical Details
+
+```
+   │
+31 │     lambda <-- dy / dx;
+   │                     ^^ The divisor `dx` must be constrained to be non-zero.
+```
+
+#### Impact
+
+Informational.
+
+#### Recommendation
+
+Do an additional check for non-zero values.
+
+
+### 3. Informational - More tests for the circuits
 
 
 Tests such as negative tests are always good to have in order to cover more unexpected cases.
