@@ -2,7 +2,7 @@
 
 **Review Resources:**
 
-- TODO, generic text is: None beyond the code repositories
+None beyond the code repositories.
 
 **Auditors:**
 
@@ -11,52 +11,50 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-TODO_Insert_TOC
+- [Review Summary](#review-summary)
+- [Scope](#scope)
+- [Findings Explanation](#findings-explanation)
+- [Critical Findings](#critical-findings)
+- [High Findings](#high-findings)
+- [Medium Findings](#medium-findings)
+- [Low Findings](#low-findings)
+- [Informational Findings](#informational-findings)
+  - [1. Informational - Remove Uneeded Variable "Bits"](#1-informational---remove-uneeded-variable-bits)
+    - [Technical Details](#technical-details)
+    - [Impact](#impact)
+    - [Recommendation](#recommendation)
+  - [2. Informational - More tests for the circuits](#2-informational---more-tests-for-the-circuits)
+    - [Technical Details](#technical-details-1)
+    - [Impact](#impact-1)
+    - [Recommendation](#recommendation-1)
+- [Final remarks](#final-remarks)
 
 ## Review Summary
 
-**TODO_protocol_name**
+**Spartan ECDSA**
 
-TODO_protocol_name provides TODO_explain_protocol_purpose.
-
-The contracts of the TODO_protocol_name [Repo](TODO_github_URL) were reviewed over TODO_days_total days. The code review was performed by TODO_number_of_auditors auditors between TODO_start_date and TODO_finish_date, 2023. The repository was under active development during the review, but the review was limited to the latest commit at the start of the review. This was commit [TODO_hash](TODO_github_URL_to_hash) for the TODO_protocol_name repo.
+The circuits of the Spartan ECDSA [Repo](https://github.com/personaelabs/spartan-ecdsa) were reviewed over 5 days. The code review was performed by 2 auditors between 1 Jul and 5 Jul, 2023.
 
 ## Scope
 
-The scope of the review consisted of the following contracts at the specific commit:
+The scope of the review consisted of the following circuits at the specific commit `5dae5e1aa4eda726ddffc08eaec0144d003a98a0`:
 
-- eff_ecdsa.circom
-
-After the findings were presented to the TODO_protocol_name team, fixes were made and included in several PRs.
+- `eff_ecdsa.circom`
+- `tree.circom`
+- `add.circom`
+- `mul.circom`
 
 This review is a code review to identify potential vulnerabilities in the code. The reviewers did not investigate security practices or operational security and assumed that privileged accounts could be trusted. The reviewers did not evaluate the security of the code relative to a standard or specification. The review may not have identified all potential attack vectors or areas of vulnerability.
 
-yAcademy and the auditors make no warranties regarding the security of the code and do not warrant that the code is free from defects. yAcademy and the auditors do not represent nor imply to third parties that the code has been audited nor that the code is free from defects. By deploying or using the code, TODO_protocol_name and users of the contracts agree to use the code at their own risk.
-
-## Code Evaluation Matrix
-
-| Category                 | Mark    | Description |
-| ------------------------ | ------- | ----------- |
-| Access Control           | Good    | TODO        |
-| Mathematics              | Good    | TODO        |
-| Complexity               | Good    | TODO        |
-| Libraries                | Average | TODO        |
-| Decentralization         | Good    | TODO        |
-| Code stability           | Good    | TODO        |
-| Documentation            | Low     | TODO        |
-| Monitoring               | Average | TODO        |
-| Testing and verification | Average | TODO        |
+yAcademy and the auditors make no warranties regarding the security of the code and do not warrant that the code is free from defects. yAcademy and the auditors do not represent nor imply to third parties that the code has been audited nor that the code is free from defects. By deploying or using the code, Spartan ECDSA and users of the circuits agree to use the code at their own risk.
 
 ## Findings Explanation
 
 Findings are broken down into sections by their respective impact:
-
-- Critical, High, Medium, Low impact
-  - These are findings that range from attacks that may cause loss of funds, impact control/ownership of the contracts, or cause any unintended consequences/actions that are outside the scope of the requirements
-- Gas savings
-  - Findings that can improve the gas efficiency of the contracts
-- Informational
-  - Findings including recommendations and best practices
+ - Critical, High, Medium, Low impact
+     - These are findings that range from attacks that may cause loss of funds, impact control/ownership of the circuits, or cause any unintended consequences/actions that are outside the scope of the requirements
+ - Informational
+     - Findings including recommendations and best practices
 
 ---
 
@@ -74,59 +72,7 @@ None.
 
 ## Low Findings
 
-### 1. Low - TODO_Title
-
-TODO
-
-#### Technical Details
-
-TODO
-
-#### Impact
-
-Low. TODO_reasoning.
-
-#### Recommendation
-
-TODO
-
-#### Developer Response
-
-### 2. Low - TODO_Title
-
-TODO
-
-#### Technical Details
-
-TODO
-
-#### Impact
-
-Low. TODO_reasoning.
-
-#### Recommendation
-
-TODO
-
-#### Developer Response
-
-## Gas Savings Findings
-
-### 1. Gas - TODO_Title
-
-TODO
-
-#### Technical Details
-
-TODO
-
-#### Impact
-
-Gas savings.
-
-#### Recommendation
-
-TODO
+None.
 
 ## Informational Findings
 
@@ -158,6 +104,24 @@ template EfficientECDSA() {
     signal input Ty;
 ```
 
+
+### 2. Informational - More tests for the circuits
+
+
+Tests such as negative tests are always good to have in order to cover more unexpected cases.
+
+#### Technical Details
+
+`eff_ecdsa.test.ts` and `eff_ecdsa_to_addr.test.ts` only have 1 positive tests.
+
+#### Impact
+
+Informational.
+
+#### Recommendation
+
+Adding more tests for the circuits.
+
 ## Final remarks
 
-TODO
+Spartan ECDSA does not have any major issues. The circuits are well documented.
